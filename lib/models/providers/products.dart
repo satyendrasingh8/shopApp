@@ -55,9 +55,9 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  void addProduct(Product product) {
-    const url = 'https://shopapp-a7b39.firebaseio.com/products.json';
-    http
+  Future<void> addProduct(Product product) {
+    const url = 'https://shopapp-a7b39.firebaseio.com/products';
+    return http
         .post(url,
             body: json.encode({
               'title': product.title,
@@ -67,7 +67,6 @@ class Products with ChangeNotifier {
               'isFavourite': product.isFavourite,
             }))
         .then((response) {
-     
       final newProduct = Product(
           title: product.title,
           description: product.description,
@@ -76,6 +75,8 @@ class Products with ChangeNotifier {
           id: json.decode(response.body)['name']);
       _items.add(newProduct);
       notifyListeners();
+    }).catchError((error) {
+      throw error;
     });
   }
 
