@@ -33,13 +33,13 @@ class MyApp extends StatelessWidget {
           create: (ctx) => Orders(),
         )
       ],
-      child: MaterialApp(
+      child:Consumer<Auth>(builder: (ctx,authData,_) =>MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
             primaryColor: Colors.purple,
             accentColor: Colors.deepOrange,
             fontFamily: 'Lato'),
-        home: AuthScreen(),
+        home:authData.isAuth ? ProductsOverviewScreen() : AuthScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName:(ctx)=> CartScreen(),
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
           UserProductsScreen.routeName:(ctx) =>UserProductsScreen(),  
           EditProductScreen.routeName:(ctx)=> EditProductScreen(),
               },
-      ),
+      ) ,) 
     );
   }
 }
