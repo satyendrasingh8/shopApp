@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CartItem {
   final String id;
@@ -59,7 +61,7 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(String productId, double price, String title) {
+  void addItem(String productId, double price, String title) async {
     if (_items.containsKey(productId)) {
       _items.update(
           productId,
