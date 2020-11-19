@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:shopApp/models/providers/http_exception.dart';
 
@@ -74,4 +75,16 @@ class Auth with ChangeNotifier {
       throw error;
     }
   }
+
+  void logout() {
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
+    notifyListeners();
+  }
+
+
+
+
+
 }
