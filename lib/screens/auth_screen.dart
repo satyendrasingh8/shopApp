@@ -106,15 +106,18 @@ class _AuthCardState extends State<AuthCard> {
   final _passwordController = TextEditingController();
 
   void _showErrorDialog(String message) {
-    showDialog(context: context, builder: (ctx) => AlertDialog(
-      title: Text('An Error Occured!'),
-      content: Text(message),
-      actions: [
-        FlatButton(child: Text('Okay'),
-        onPressed:()=> Navigator.of(context).pop(),
-        )
-      ],
-    ));
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+              title: Text('An Error Occured!'),
+              content: Text(message),
+              actions: [
+                FlatButton(
+                  child: Text('Okay'),
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              ],
+            ));
   }
 
   Future<void> _submit() async {
@@ -213,6 +216,7 @@ class _AuthCardState extends State<AuthCard> {
                     if (value.isEmpty || value.length < 5) {
                       return 'Password is too short!';
                     }
+                    return null;
                   },
                   onSaved: (value) {
                     _authData['password'] = value;
@@ -228,6 +232,7 @@ class _AuthCardState extends State<AuthCard> {
                             if (value != _passwordController.text) {
                               return 'Passwords do not match!';
                             }
+                            return null;
                           }
                         : null,
                   ),

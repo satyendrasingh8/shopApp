@@ -155,6 +155,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'please provide a value.';
+                          } else if (value.length > 36) {
+                            return 'too long !';
                           }
                           return null;
                         },

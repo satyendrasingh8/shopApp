@@ -36,8 +36,9 @@ class _OrderItemState extends State<OrderItem> {
           ),
           if (_expanded)
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               height: min(widget.order.products.length * 20.0 + 15, 180),
+            
               child: ListView(
                 children: widget.order.products
                     .map((product) => Row(
@@ -45,13 +46,16 @@ class _OrderItemState extends State<OrderItem> {
                           children: [
                             Text(
                               product.title,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  fontSize: 12, fontWeight: FontWeight.bold),
                             ),
+                            
                             Text(
                               '${product.quantity}x \$${product.price}',
+                              overflow: TextOverflow.ellipsis,
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.grey),
+                                  TextStyle(fontSize: 13, color: Colors.grey),
                             )
                           ],
                         ))
